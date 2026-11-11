@@ -1,5 +1,17 @@
 <!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101b28"><title>Mnemonica Coach</title><link rel="manifest" href="manifest.webmanifest"><style>
-:root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#f4f6fa;background:#101b28}*{box-sizing:border-box}body{margin:0}main{max-width:520px;margin:auto;padding:24px 18px 90px}header{display:flex;justify-content:space-between;align-items:center}h1{font-size:27px;margin:12px 0 4px}h2{font-size:20px}.muted{color:#9eafc1}.panel{background:#1d2b3b;border:1px solid #344357;border-radius:20px;padding:18px;margin-top:18px}.stat{display:flex;justify-content:space-between;gap:10px}.stat>div{flex:1;text-align:center;background:#26384b;padding:12px 4px;border-radius:12px}.stat strong{display:block;font-size:22px}button,input,select{font:inherit}button{border:0;border-radius:13px;background:#d5b779;color:#172333;font-weight:700;padding:14px 16px;cursor:pointer}button.secondary{background:#31465d;color:white}button:disabled{opacity:.4}.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{flex:1}.card{background:#fff;color:#1a2230;border-radius:16px;border:2px solid #e1e5e8;width:170px;height:238px;margin:20px auto;display:flex;flex-direction:column;justify-content:space-between;padding:12px;box-shadow:0 12px 25px #0004}.card .corner{font-size:24px;font-weight:800}.card .center{font-size:64px;text-align:center}.red{color:#cb263a}.question{text-align:center;font-size:23px;font-weight:750;margin-top:22px}.number{font-size:88px;text-align:center;font-weight:800;margin:35px 0}.answer{width:100%;padding:15px;border-radius:12px;background:#101b28;color:white;border:1px solid #61738a;font-size:20px}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.grid button{padding:11px 2px}.small{font-size:13px}.hidden{display:none}.good{color:#86d7a6}.bad{color:#ff9a9a}.pill{display:inline-block;background:#30465a;padding:6px 10px;border-radius:30px;font-size:12px}.stack{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.stack>div{background:#26384b;padding:10px;border-radius:10px}textarea{width:100%;min-height:76px;background:#101b28;color:white;border:1px solid #53677c;border-radius:10px;padding:10px}nav{position:fixed;bottom:0;left:0;right:0;background:#152333;border-top:1px solid #344357;display:flex;justify-content:center;padding:10px 10px max(10px,env(safe-area-inset-bottom))}.memory-art{display:block;width:100%;max-width:440px;max-height:520px;object-fit:contain;margin:14px auto;border-radius:12px;background:#eee}.bookhint{padding:12px;border-radius:12px;background:#30465a;margin:12px 0}.bookhint img{width:100%;border-radius:8px}.import-status{min-height:24px}.book-step{background:#26384b;padding:12px;border-radius:12px;margin:10px 0}nav button{background:transparent;color:#c3cbd6;padding:10px 5px;font-size:11px}nav button.active{color:#e4c78b} .progress{height:8px;background:#33475a;border-radius:8px;overflow:hidden}.progress>div{height:100%;background:#d5b779} .feedback{margin-top:15px;padding:12px;border-radius:12px;background:#2b3c4c} .hintbox{background:#33475b;padding:14px;border-radius:12px;margin-top:12px}.subtle{background:transparent;color:#e4c78b;border:1px solid #61738a}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.choices button{background:#31465d;color:#fff}.tag{display:inline-block;border:1px solid #61738a;border-radius:20px;padding:5px 10px;font-size:12px;color:#cbd6e2}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.panel button{max-width:100%}select.answer{min-width:0}.card.mini{transform:scale(.8);margin:-4px auto} </style><style id="mobile-quiz-fixes">input,select,textarea{font-size:16px!important}.place-quiz h1{font-size:22px;margin:6px 0}.place-quiz .panel{margin-top:10px;padding:12px}.place-quiz .panel h2{font-size:18px;margin:3px 0 12px}.place-quiz .memory-art{max-height:230px;margin:8px auto}.place-quiz .choices{gap:7px}.place-quiz .choices button{padding:11px 8px;min-height:45px}.place-quiz .feedback{margin-top:9px;padding:10px}.place-quiz .muted.small{margin:7px 0}.place-quiz:has(.place-next){padding-bottom:85px}.place-next{position:fixed;z-index:30;bottom:calc(58px + env(safe-area-inset-bottom));left:0;right:0;padding:9px 18px;background:linear-gradient(transparent,#101b28 20%);display:flex;justify-content:center}.place-next button{width:100%;max-width:484px;box-shadow:0 4px 16px #0008}nav{z-index:20}.place-quiz .sectionhead button{padding:9px;font-size:13px}.place-quiz .sectionhead{align-items:center}@media(max-height:720px){.place-quiz .memory-art{max-height:175px}.place-quiz .choices button{padding:9px 6px}}</style></head><body><main><header><span class="pill">♠ MNEMONICA COACH</span><span id="headProgress" class="muted small"></span></header><section id="screen"></section></main><nav><button data-nav="home" class="active">⌂ Start</button><button data-nav="course">◎ Lernkurs</button><button data-nav="stack">▦ Stapel</button><button data-nav="palace">▧ Bilder</button><button data-nav="stats">◉ Fortschritt</button></nav><script>
+:root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#f4f6fa;background:#101b28}*{box-sizing:border-box}body{margin:0}main{max-width:520px;margin:auto;padding:24px 18px 90px}header{display:flex;justify-content:space-between;align-items:center}h1{font-size:27px;margin:12px 0 4px}h2{font-size:20px}.muted{color:#9eafc1}.panel{background:#1d2b3b;border:1px solid #344357;border-radius:20px;padding:18px;margin-top:18px}.stat{display:flex;justify-content:space-between;gap:10px}.stat>div{flex:1;text-align:center;background:#26384b;padding:12px 4px;border-radius:12px}.stat strong{display:block;font-size:22px}button,input,select{font:inherit}button{border:0;border-radius:13px;background:#d5b779;color:#172333;font-weight:700;padding:14px 16px;cursor:pointer}button.secondary{background:#31465d;color:white}button:disabled{opacity:.4}.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{flex:1}.card{background:#fff;color:#1a2230;border-radius:16px;border:2px solid #e1e5e8;width:170px;height:238px;margin:20px auto;display:flex;flex-direction:column;justify-content:space-between;padding:12px;box-shadow:0 12px 25px #0004}.card .corner{font-size:24px;font-weight:800}.card .center{font-size:64px;text-align:center}.red{color:#cb263a}.question{text-align:center;font-size:23px;font-weight:750;margin-top:22px}.number{font-size:88px;text-align:center;font-weight:800;margin:35px 0}.answer{width:100%;padding:15px;border-radius:12px;background:#101b28;color:white;border:1px solid #61738a;font-size:20px}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.grid button{padding:11px 2px}.small{font-size:13px}.hidden{display:none}.good{color:#86d7a6}.bad{color:#ff9a9a}.pill{display:inline-block;background:#30465a;padding:6px 10px;border-radius:30px;font-size:12px}.stack{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.stack>div{background:#26384b;padding:10px;border-radius:10px}textarea{width:100%;min-height:76px;background:#101b28;color:white;border:1px solid #53677c;border-radius:10px;padding:10px}nav{position:fixed;bottom:0;left:0;right:0;background:#152333;border-top:1px solid #344357;display:flex;justify-content:center;padding:10px 10px max(10px,env(safe-area-inset-bottom))}.memory-art{display:block;width:100%;max-width:440px;max-height:520px;object-fit:contain;margin:14px auto;border-radius:12px;background:#eee}.bookhint{padding:12px;border-radius:12px;background:#30465a;margin:12px 0}.bookhint img{width:100%;border-radius:8px}.import-status{min-height:24px}.book-step{background:#26384b;padding:12px;border-radius:12px;margin:10px 0}nav button{background:transparent;color:#c3cbd6;padding:10px 5px;font-size:11px}nav button.active{color:#e4c78b} .progress{height:8px;background:#33475a;border-radius:8px;overflow:hidden}.progress>div{height:100%;background:#d5b779} .feedback{margin-top:15px;padding:12px;border-radius:12px;background:#2b3c4c} .hintbox{background:#33475b;padding:14px;border-radius:12px;margin-top:12px}.subtle{background:transparent;color:#e4c78b;border:1px solid #61738a}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.choices button{background:#31465d;color:#fff}.tag{display:inline-block;border:1px solid #61738a;border-radius:20px;padding:5px 10px;font-size:12px;color:#cbd6e2}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.panel button{max-width:100%}select.answer{min-width:0}.card.mini{transform:scale(.8);margin:-4px auto}
+.coach-list{padding:14px}.coach-row{border-top:1px solid #344357}
+.coach-row summary{min-height:60px;padding:10px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 8px;cursor:pointer}
+.coach-row summary::-webkit-details-marker{display:none}
+.coach-row summary strong::before{content:'▸ ';color:#f4c76d}
+.coach-row[open] summary strong::before{content:'▾ '}
+.coach-count{grid-column:1;font-size:.85rem}.coach-status{font-size:.8rem;padding:3px 7px;border-radius:8px;background:#26384b}
+.coach-status.green{color:#a5ebbd}.coach-status.yellow{color:#ffdb8a}.coach-status.red{color:#ffb2b0}
+.coach-directions{display:grid;gap:8px;padding:4px 0 12px 15px;font-size:.9rem}
+.coach-rules{margin-bottom:12px}.coach-rules summary{cursor:pointer;padding:10px 0}
+#adaptiveStart,#coachStats,#coachBack,#adaptiveAgain{width:100%;min-height:44px}
+.place-quiz .choices button,#placeContinue,#placeExit{min-height:44px}
+</style><style id="mobile-quiz-fixes">input,select,textarea{font-size:16px!important}.place-quiz h1{font-size:22px;margin:6px 0}.place-quiz .panel{margin-top:10px;padding:12px}.place-quiz .panel h2{font-size:18px;margin:3px 0 12px}.place-quiz .memory-art{max-height:230px;margin:8px auto}.place-quiz .choices{gap:7px}.place-quiz .choices button{padding:11px 8px;min-height:45px}.place-quiz .feedback{margin-top:9px;padding:10px}.place-quiz .muted.small{margin:7px 0}.place-quiz:has(.place-next){padding-bottom:85px}.place-next{position:fixed;z-index:30;bottom:calc(58px + env(safe-area-inset-bottom));left:0;right:0;padding:9px 18px;background:linear-gradient(transparent,#101b28 20%);display:flex;justify-content:center}.place-next button{width:100%;max-width:484px;box-shadow:0 4px 16px #0008}nav{z-index:20}.place-quiz .sectionhead button{padding:9px;font-size:13px}.place-quiz .sectionhead{align-items:center}@media(max-height:720px){.place-quiz .memory-art{max-height:175px}.place-quiz .choices button{padding:9px 6px}}</style></head><body><main><header><span class="pill">♠ MNEMONICA COACH</span><span id="headProgress" class="muted small"></span></header><section id="screen"></section></main><nav><button data-nav="home" class="active">⌂ Start</button><button data-nav="course">◎ Lernkurs</button><button data-nav="stack">▦ Stapel</button><button data-nav="palace">▧ Bilder</button><button data-nav="stats">◉ Fortschritt</button></nav><script>
 const raw='4C 2H 7D 3C 4H 6D AS 5H 9S 2S QH 3D QC 8H 6S 5S 9H KC 2D JH 3S 8S 6H TC 5D KD 2C 3H 8D 5C KS JD 8C TS KH JC 7S TH AD 4S 7H 4D AC 9C JS QD 7C QS TD 6C AH 9D'.split(' ');
 const suit={C:'♣',D:'♦',H:'♥',S:'♠'},names={C:'Kreuz',D:'Karo',H:'Herz',S:'Pik'},ranks={A:'Ass',K:'König',Q:'Dame',J:'Bube',T:'10'};
 const cards=raw.map((id,i)=>({id,pos:i+1,s:id.slice(-1),r:id.slice(0,-1),name:names[id.slice(-1)]+' '+(ranks[id.slice(0,-1)]||id.slice(0,-1))}));
@@ -38,7 +50,7 @@ function plainImg(n){return plainImages[n]?`<img class="memory-art" src="${plain
 function bookContext(c){let n=stopNo(c),pair=stopCards(n);return `<div class="bookhint"><b>Gedächtnisort ${n}${bookStops[n-1]?' · '+bookStops[n-1]:''}</b><p class="small">Das Buch nutzt 26 Orte mit je zwei Karten. Hier gehören Position ${pair[0].pos} (${pair[0].name}) und ${pair[1].pos} (${pair[1].name}) zusammen.</p>${bookImg(n)}<p class="small muted">Betrachte die Szene und erzähle dir die Verbindung zwischen Ort, Bilddetails und den beiden Karten. Danach versuche den Abruf ohne Bild.</p></div>`}
 function palace(){return `<h1>Dein Bilderpfad 🧠</h1><p class="muted">Die Originalillustrationen aus <i>The Memory Arts – Mnemonica Special Edition</i> kannst du direkt aus deiner PDF importieren. Die Datei und Bilder werden nicht auf GitHub hochgeladen.</p><div class="panel"><h2>Originalbilder lokal einlesen</h2><p>Wähle deine PDF <b>the-memory-arts.pdf</b>. Die App liest die 26 reinen Ortsbilder mit ihren Bildunterschriften (PDF-Seiten 21–46) <b>und</b> die 26 späteren Kartenbilder (PDF-Seiten 59–84) ein. Alles bleibt auf diesem Gerät.</p><input id="pdfInput" type="file" accept="application/pdf,.pdf" style="max-width:100%"><p id="importStatus" class="small muted import-status">${Object.keys(palaceImages).length} von 26 Bildern verfügbar.</p><p class="small muted">Hinweis: Der erste Import braucht Internet, um den PDF-Leser zu laden. Für die Nutzung auf dem iPhone musst du die PDF dort einmal ebenfalls importieren. Bilder sind nicht Teil der JSON-Lernstandsicherung.</p></div><div class="panel"><h2>Dein Gedächtnispalast</h2>${Array.from({length:26},(_,i)=>{let n=i+1,a=stopCards(n);return `<div class="book-step"><b>Ort ${n}${bookStops[i]?' · '+bookStops[i]:''}</b><p class="small">${a[0].pos}: ${a[0].name} · ${a[1].pos}: ${a[1].name}</p><button class="secondary" data-stop="${n}">${palaceImages[n]?'Bild ansehen':'Bild fehlt'}</button></div>`}).join('')}</div><div id="stopPreview"></div>`}
 function openDB(){return new Promise((resolve,reject)=>{let req=indexedDB.open('mnemonica-originalbilder-v1',1);req.onupgradeneeded=()=>req.result.createObjectStore('images');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
-async function loadSavedImages(){try{imageDB=await openDB();let tx=imageDB.transaction('images','readonly');let store=tx.objectStore('images');for(let n=1;n<=26;n++){for(const [key,target] of [[n,palaceImages],[100+n,plainImages]]){let req=store.get(key);req.onsuccess=()=>{if(req.result){target[n]=req.result;if(page==='palace'||page==='course')render()}}}}}catch(e){console.warn('Bildspeicher nicht verfügbar',e)}}
+async function loadSavedImages(){try{imageDB=await openDB();let tx=imageDB.transaction('images','readonly');let store=tx.objectStore('images');for(let n=1;n<=26;n++){for(const [key,target] of [[n,palaceImages],[100+n,plainImages]]){let req=store.get(key);req.onsuccess=()=>{if(req.result){target[n]=req.result;if(page==='palace'||page==='course'&&courseView==='intro')render()}}}}}catch(e){console.warn('Bildspeicher nicht verfügbar',e)}}
 function putImage(n,url){return new Promise((resolve,reject)=>{let tx=imageDB.transaction('images','readwrite');tx.objectStore('images').put(url,n);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
 function loadPDFJS(){return new Promise((resolve,reject)=>{if(window.pdfjsLib)return resolve();let t=document.createElement('script');t.src='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js';t.onload=()=>resolve();t.onerror=()=>reject(new Error('PDF-Lesebibliothek konnte nicht geladen werden. Bitte Internetverbindung prüfen.'));document.head.appendChild(t)})}
 async function importBook(file){let status=$('importStatus');if(!file)return;try{if(!imageDB)imageDB=await openDB();status.textContent='PDF-Leser wird geladen …';await loadPDFJS();pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';let data=await file.arrayBuffer();let pdf=await pdfjsLib.getDocument({data:new Uint8Array(data)}).promise;if(pdf.numPages<84)throw new Error('Die ausgewählte PDF hat weniger als 84 Seiten. Bitte die richtige Ausgabe auswählen.');for(let k=0;k<2;k++)for(let n=1;n<=26;n++){status.textContent=`${k===0?"Ortsbild":"Kartenbild"} ${n} von 26 wird lokal gespeichert …`;let pg=await pdf.getPage(k===0?20+n:58+n);let viewport=pg.getViewport({scale:1});let scale=Math.min(1.2,850/viewport.width);viewport=pg.getViewport({scale});let canvas=document.createElement('canvas');canvas.width=Math.round(viewport.width);canvas.height=Math.round(viewport.height);await pg.render({canvasContext:canvas.getContext('2d'),viewport}).promise;let url=canvas.toDataURL('image/jpeg',0.78);await putImage(k===0?100+n:n,url);(k===0?plainImages:palaceImages)[n]=url;pg.cleanup()}status.textContent='Alle 26 Ortsbilder und 26 Kartenbilder wurden gespeichert ✓';setTimeout(()=>{if(page==='palace')render()},1400)}catch(e){status.textContent='Import nicht möglich: '+e.message}}
@@ -72,7 +84,8 @@ function showPlaceCaption(n){
 const placeStages=[[1,5],[6,10],[11,15],[16,20],[21,25],[26,26]];
 courseState.mastered=Math.max(0,Math.min(6,Number(courseState.mastered)||0));
 courseState.attempts=courseState.attempts||[];
-let placeSession=null,placeFeedback=null,placeAnswer=null,placeShow=false;
+let placeSession=null,placeFeedback=null,placeAnswer=null,placeShow=false,reviewingPlaces=false;
+const lessonBounds=()=>reviewingPlaces?[1,learnedPlaceMax()||5]:placeStages[placeStage()];
 const placeStage=()=>Math.min(5,courseState.mastered);
 const placeRange=(st)=>Array.from({length:placeStages[st][1]-placeStages[st][0]+1},(_,i)=>placeStages[st][0]+i);
 const placeLabel=n=>bookStops[n-1];
@@ -111,13 +124,16 @@ function beginPlaceExam(){let st=placeStage();placeSession={st,questions:makePla
 function placeCheck(value){if(!placeSession||placeFeedback)return;let q=placeSession.questions[placeSession.idx],ok=value===q.correct;placeFeedback={ok,correct:q.correct};placeSession.per[q.n]=placeSession.per[q.n]||{right:0,total:0};placeSession.per[q.n].total++;if(ok){placeSession.correct++;placeSession.per[q.n].right++}else placeSession.miss.push(q.n);render()}
 function placeAdvance(){if(!placeSession)return;placeSession.idx++;placeFeedback=null;if(placeSession.idx>=placeSession.questions.length){let s=placeSession,focus=placeRange(s.st),pct=s.correct/s.questions.length;let mastered=pct>=.9&&focus.every(n=>(s.per[n]?.right||0)>=2);s.passed=mastered;courseState.attempts.push({stage:s.st,date:new Date().toISOString(),correct:s.correct,total:s.questions.length,passed:mastered});if(mastered){courseState.mastered=Math.max(courseState.mastered,s.st+1);courseState.passed=Math.max(courseState.passed||0,placeStages[s.st][1]);}saveCourse();courseView='examDone'}render()}
 courseHome=function(){let st=placeStage(),complete=courseState.mastered===6,focus=complete?[]:placeRange(st);return `<h1>Deine Gedächtnisreise 🧠</h1><p class="muted">Erst die Orte und ihre Geschichten – Karten kommen später.</p><div class="panel"><span class="pill">${complete?'ALLE ETAPPEN GESCHAFFT':'ETAPPE '+(st+1)+' VON 6'}</span><h2>${complete?'26 Orte freigeschaltet':`Orte ${focus[0]}–${focus.at(-1)} lernen`}</h2><div class="progress"><div style="width:${courseState.mastered/6*100}%"></div></div><p class="small muted">${courseState.mastered} von 6 Etappen bestanden · ${courseState.mastered?placeStages[courseState.mastered-1][1]:0} von 26 Orten freigeschaltet</p>${complete?'<p class="good">Die gesamte Reise ist freigeschaltet. Wiederhole sie regelmäßig!</p>':`<p>Präge dir zuerst die Bilder und Texte ein. Die Prüfung mischt Ortsnummern, Namen, Bilder sowie vorherige und nächste Stationen.</p><div class="actions"><button id="placeLearn">Orte lernen</button><button id="placeExam">Gemischt prüfen</button></div><p class="small muted">Zum Bestehen: mindestens 90 % richtig und jeder neue Ort mindestens zweimal richtig. Bei Fehlern bleibt die Etappe offen.</p>`}<p><button id="placeReview" class="secondary" style="width:100%">${complete?'Alle Orte wiederholen':'Bisherige Orte wiederholen'}</button></p></div><div class="panel"><h2>Dein Weg</h2>${placeStages.map((a,i)=>`<div class="book-step">${i<courseState.mastered?'✓':i===st?'➜':'🔒'} Etappe ${i+1}: Orte ${a[0]}–${a[1]} ${i===st&&!complete?'· aktuell':''}</div>`).join('')}</div><div class="panel"><h2>Später: Bilderschlüssel und Karten</h2><p>Wenn du die 26 Orte beherrschst, folgen die Symbolregeln und das eigentliche Kartentraining.</p><button id="courseKeyBtn" class="secondary">Bilderschlüssel ansehen</button></div>`};
-courseLesson=function(){let n=courseStop,st=placeStage(),allowed=courseState.mastered===6?26:placeStages[st][1],min=courseState.mastered===6?1:placeStages[st][0];return `<h1>Ort ${n} · ${escapeHtml(placeLabel(n))}</h1><p class="muted">${courseState.mastered===6?'Gesamte Reise':`Etappe ${st+1}: Orte ${min}–${allowed}`} · Nur Orte und Geschichten</p><div class="panel">${courseReveal?`<div class="book-step"><b>Ohne Bild:</b> Stelle dir „${escapeHtml(placeLabel(n))}“ und die Geschichte unter der Illustration vor.</div><button id="courseShow" class="secondary" style="width:100%">Bild und Geschichte aufdecken</button>`:plainImg(n)+`<button id="courseHide" class="secondary" style="width:100%">Bild ausblenden und erinnern</button>`}<p>Lies den Text unter dem Bild und erzähle die Szene anschließend ohne Vorlage nach.</p>${!courseReveal&&plainImages[n]?`<button id="captionZoom" class="secondary" style="width:100%">📖 Bildunterschrift groß anzeigen</button><div id="captionArea" class="hidden" style="margin-top:12px"><p class="small muted">Originaltext aus deiner PDF, vergrößert zum Lesen:</p><img id="captionImage" style="width:100%;border-radius:12px;background:#eee" alt="Vergrößerte Original-Bildunterschrift"></div>`:''}<p class="small muted">Der Originaltext ist Englisch. Du kannst dir darunter deine eigene deutsche Kurzfassung notieren.</p><textarea id="placeNote" placeholder="Deine persönliche Merkhilfe (optional)">${escapeHtml(localStorage.getItem('mnemonica-place-'+n)||'')}</textarea><div class="actions"><button id="coursePrev" class="secondary" ${n<=min?'disabled':''}>← Vorheriger</button><button id="courseNext">${n>=allowed?'Zur Etappe':'Nächster Ort →'}</button></div><p><button id="courseBack" class="subtle" style="width:100%">Zur Übersicht</button></p></div>`};
+courseLesson=function(){let n=courseStop,st=placeStage(),[min,allowed]=lessonBounds();return `<h1>Ort ${n} · ${escapeHtml(placeLabel(n))}</h1><p class="muted">${reviewingPlaces?`Wiederholung: Orte 1–${allowed}`:`Etappe ${st+1}: Orte ${min}–${allowed}`} · Nur Orte und Geschichten</p><div class="panel">${courseReveal?`<div class="book-step"><b>Ohne Bild:</b> Stelle dir „${escapeHtml(placeLabel(n))}“ und die Geschichte unter der Illustration vor.</div><button id="courseShow" class="secondary" style="width:100%">Bild und Geschichte aufdecken</button>`:plainImg(n)+`<button id="courseHide" class="secondary" style="width:100%">Bild ausblenden und erinnern</button>`}<p>Lies den Text unter dem Bild und erzähle die Szene anschließend ohne Vorlage nach.</p>${!courseReveal&&plainImages[n]?`<button id="captionZoom" class="secondary" style="width:100%">📖 Bildunterschrift groß anzeigen</button><div id="captionArea" class="hidden" style="margin-top:12px"><p class="small muted">Originaltext aus deiner PDF, vergrößert zum Lesen:</p><img id="captionImage" style="width:100%;border-radius:12px;background:#eee" alt="Vergrößerte Original-Bildunterschrift"></div>`:''}<p class="small muted">Der Originaltext ist Englisch. Du kannst dir darunter deine eigene deutsche Kurzfassung notieren.</p><textarea id="placeNote" placeholder="Deine persönliche Merkhilfe (optional)">${escapeHtml(localStorage.getItem('mnemonica-place-'+n)||'')}</textarea><div class="actions"><button id="coursePrev" class="secondary" ${n<=min?'disabled':''}>← Vorheriger</button><button id="courseNext">${n>=allowed?'Zur Etappe':'Nächster Ort →'}</button></div><p><button id="courseBack" class="subtle" style="width:100%">Zur Übersicht</button></p></div>`};
 function placeExamHtml(){let s=placeSession,q=s.questions[s.idx],pct=Math.round(s.idx/s.questions.length*100);return `<h1>Gemischte Ortsprüfung</h1><p class="muted">Frage ${s.idx+1} von ${s.questions.length} · Etappe ${s.st+1}</p><div class="progress"><div style="width:${pct}%"></div></div><div class="panel"><h2>${escapeHtml(q.stem)}</h2>${q.illustration}<div class="choices">${q.options.map((v,i)=>`<button data-place-answer="${i}" ${placeFeedback?'disabled':''}>${escapeHtml(v)}</button>`).join('')}</div>${placeFeedback?`<div class="feedback ${placeFeedback.ok?'good':'bad'}">${placeFeedback.ok?'✓ Richtig!':'✗ Noch nicht.'} Antwort: <b>${escapeHtml(placeFeedback.correct)}</b></div><p><button id="placeContinue" style="width:100%">${s.idx+1===s.questions.length?'Ergebnis ansehen':'Nächste Frage →'}</button></p>`:''}</div>`}
 function placeExamDone(){let s=placeSession,pct=Math.round(s.correct/s.questions.length*100),focus=placeRange(s.st),weak=focus.filter(n=>(s.per[n]?.right||0)<2);return `<h1>${s.passed?'Etappe bestanden! 🎉':'Weiter üben 💪'}</h1><div class="panel"><div class="number">${pct}%</div><p style="text-align:center">${s.correct} von ${s.questions.length} richtig</p>${s.passed?`<p class="good">Die nächsten Orte sind freigeschaltet.</p>`:`<p>Für die Freischaltung brauchst du mindestens 90 % und pro neuem Ort zwei richtige Antworten.</p>${weak.length?`<p>Besonders wiederholen: ${weak.map(n=>`${n} · ${escapeHtml(placeLabel(n))}`).join(', ')}.</p>`:''}`}<div class="actions"><button id="placeAgain">${s.passed?'Zur nächsten Etappe':'Erneut prüfen'}</button><button id="placeGoLearn" class="secondary">Orte ansehen</button></div></div>`}
 const previousCourse=course;course=function(){if(courseView==='exam')return placeExamHtml();if(courseView==='examDone')return placeExamDone();return previousCourse()};
-const previousCourseBind=bind;bind=function(){previousCourseBind();let e=id=>$(id);if(e('placeLearn'))e('placeLearn').onclick=()=>{courseStop=placeRange(placeStage())[0];courseReveal=false;courseView='lesson';render()};if(e('placeExam'))e('placeExam').onclick=beginPlaceExam;if(e('placeReview'))e('placeReview').onclick=()=>{courseStop=1;courseReveal=false;courseView='lesson';render()};if(e('courseStart'))e('courseStart').onclick=()=>{courseStop=placeRange(placeStage())[0];courseView='lesson';render()};if(e('courseNext'))e('courseNext').onclick=()=>{let t=e('placeNote');if(t)localStorage.setItem('mnemonica-place-'+courseStop,t.value);let max=courseState.mastered===6?26:placeStages[placeStage()][1];if(courseStop>=max){courseView='intro'}else courseStop++;courseReveal=false;render()};if(e('coursePrev'))e('coursePrev').onclick=()=>{let t=e('placeNote');if(t)localStorage.setItem('mnemonica-place-'+courseStop,t.value);courseStop--;courseReveal=false;render()};if(e('courseBack'))e('courseBack').onclick=()=>{courseView='intro';render()};document.querySelectorAll('[data-place-answer]').forEach(b=>b.onclick=()=>placeCheck(placeSession.questions[placeSession.idx].options[Number(b.dataset.placeAnswer)]));if(e('placeContinue'))e('placeContinue').onclick=placeAdvance;if(e('placeAgain'))e('placeAgain').onclick=()=>{if(placeSession.passed){courseView='intro';render()}else beginPlaceExam()};if(e('placeGoLearn'))e('placeGoLearn').onclick=()=>{courseStop=placeRange(placeStage())[0];courseView='lesson';courseReveal=false;render()};};
+const previousCourseBind=bind;bind=function(){previousCourseBind();let e=id=>$(id);if(e('placeLearn'))e('placeLearn').onclick=()=>{reviewingPlaces=false;courseStop=placeRange(placeStage())[0];courseReveal=false;courseView='lesson';render()};if(e('placeExam'))e('placeExam').onclick=beginPlaceExam;if(e('placeReview'))e('placeReview').onclick=()=>{reviewingPlaces=true;courseStop=1;courseReveal=false;courseView='lesson';render()};if(e('courseStart'))e('courseStart').onclick=()=>{reviewingPlaces=false;courseStop=placeRange(placeStage())[0];courseView='lesson';render()};if(e('courseNext'))e('courseNext').onclick=()=>{let t=e('placeNote');if(t)localStorage.setItem('mnemonica-place-'+courseStop,t.value);let [,max]=lessonBounds();if(courseStop>=max){courseView='intro'}else courseStop++;courseReveal=false;render()};if(e('coursePrev'))e('coursePrev').onclick=()=>{let t=e('placeNote');if(t)localStorage.setItem('mnemonica-place-'+courseStop,t.value);courseStop--;courseReveal=false;render()};if(e('courseBack'))e('courseBack').onclick=()=>{let t=e('placeNote');if(t)localStorage.setItem('mnemonica-place-'+courseStop,t.value);courseView='intro';render()};document.querySelectorAll('[data-place-answer]').forEach(b=>b.onclick=()=>placeCheck(placeSession.questions[placeSession.idx].options[Number(b.dataset.placeAnswer)]));if(e('placeContinue'))e('placeContinue').onclick=placeAdvance;if(e('placeAgain'))e('placeAgain').onclick=()=>{if(placeSession.passed){courseView='intro';render()}else beginPlaceExam()};if(e('placeGoLearn'))e('placeGoLearn').onclick=()=>{reviewingPlaces=false;courseStop=placeRange(placeStage())[0];courseView='lesson';courseReveal=false;render()};};
 
-document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{page=b.dataset.nav;render()});render();
+document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{if(page==='course'&&b.dataset.nav!=='course'&&courseView==='exam'){
+ if(!confirm('Möchtest du die laufende Runde beenden?'))return;
+ placeSession=null;placeFeedback=null;courseView='intro';
+ }page=b.dataset.nav;render()});render();
 // Bei Bildfragen nur den zentralen Bildausschnitt zeigen: keine Nummer,
 // keine Ortsbezeichnung, keine Geschichte und keine gedruckte Seitenzahl.
 // Die Originalillustration bleibt im Lernmodus unverändert.
@@ -138,6 +154,10 @@ function paintQuizPlaceImage(){
   canvas.height=height;
   const ctx=canvas.getContext('2d');
   ctx.drawImage(img,0,top,img.naturalWidth,height,0,0,canvas.width,canvas.height);
+  const timer=placeSession?.timer;
+  if(timer?.question===placeSession.questions[placeSession.idx]&&!timer.interrupted&&timer.started===null&&!document.hidden&&!placeFeedback){
+   timer.started=performance.now();
+  }
  };
  img.src=src;
 }
@@ -148,18 +168,36 @@ document.addEventListener('click',e=>{if(e.target&&e.target.id==='captionZoom')s
 let freePlaceConfig={range:'all',kind:'mixed',count:20};
 const learnedPlaceMax=()=>courseState.mastered>=6?26:courseState.mastered?placeStages[courseState.mastered-1][1]:0;
 function freePlacePool(){let max=learnedPlaceMax(),v=freePlaceConfig.range;if(v==='all')return Array.from({length:max},(_,i)=>i+1);let [a,b]=v.split('-').map(Number);return Array.from({length:Math.max(0,Math.min(max,b)-a+1)},(_,i)=>a+i)}
-function freePlaceQuestions(){let pool=freePlacePool(),types=freePlaceConfig.kind==='mixed'?['number','position','picture','next','previous']:[freePlaceConfig.kind],questions=[],count=Number(freePlaceConfig.count)||20;
- // Round-robin through all selected places before repeating any place.
- while(questions.length<count){for(let n of shuffle(pool)){if(questions.length>=count)break;let valid=types.filter(t=>t!=='next'||n<learnedPlaceMax()).filter(t=>t!=='previous'||n>1);if(!valid.length)valid=['number'];let type=valid[(questions.length+Math.floor(questions.length/pool.length))%valid.length];questions.push(placeQuestion(n,type,pool))}}
+function validPlaceTypes(n,max){
+ const types=['number','position'];
+ if(plainImages[n])types.push('picture');
+ if(n<max)types.push('next');
+ if(n>1)types.push('previous');
+ return types;
+}
+function freePlaceQuestions(){
+ const pool=freePlacePool(),max=learnedPlaceMax(),kind=freePlaceConfig.kind;
+ const eligible=pool.filter(n=>kind==='mixed'||validPlaceTypes(n,max).includes(kind));
+ const count=Number(freePlaceConfig.count)||20,questions=[];
+ const rotation=new Map(eligible.map(n=>[n,shuffle(validPlaceTypes(n,max))]));
+ while(eligible.length&&questions.length<count){
+  for(const n of shuffle(eligible)){
+   if(questions.length===count)break;
+   const types=rotation.get(n);
+   const type=kind==='mixed'?types.shift():kind;
+   if(kind==='mixed')types.push(type);
+   questions.push(placeQuestion(n,type,pool));
+  }
+ }
  return questions;
 }
-function beginFreePlaceTraining(){let pool=freePlacePool();if(!pool.length)return;placeSession={free:true,st:placeStage(),questions:freePlaceQuestions(),idx:0,correct:0,per:{},miss:[]};placeFeedback=null;courseView='exam';render();window.scrollTo(0,0)}
-function freePlaceSetup(){let max=learnedPlaceMax(),ranges=placeStages.map(([a,b])=>({a,b})).filter(x=>x.b<=max);return `<h1>Freies Ortetraining 🧠</h1><p class="muted">Übe bereits bestandene Orte – ohne neue Orte freizuschalten.</p><div class="panel"><label for="freeRange">Welche Orte?</label><select id="freeRange" class="answer"><option value="all">Alle gelernten Orte (1–${max})</option>${ranges.map(({a,b})=>`<option value="${a}-${b}" ${freePlaceConfig.range===`${a}-${b}`?'selected':''}>Orte ${a}–${b}</option>`).join('')}</select><p><label for="freeKind">Fragenart</label></p><select id="freeKind" class="answer">${[['mixed','Alles gemischt'],['number','Nummer → Ort'],['position','Ort → Nummer'],['picture','Bilder erkennen'],['next','Nächster Ort'],['previous','Vorheriger Ort']].map(([v,t])=>`<option value="${v}" ${freePlaceConfig.kind===v?'selected':''}>${t}</option>`).join('')}</select><p><label for="freeCount">Anzahl der Fragen</label></p><select id="freeCount" class="answer">${[10,20,30].map(n=>`<option value="${n}" ${freePlaceConfig.count===n?'selected':''}>${n} Fragen</option>`).join('')}</select><p><button id="freeStart" style="width:100%">Training starten</button></p><button id="freeBack" class="secondary" style="width:100%">Zur Übersicht</button></div>`}
+function beginFreePlaceTraining(){const questions=freePlaceQuestions();if(!questions.length){if($('freeStatus'))$('freeStatus').textContent='Für diese Auswahl sind keine passenden Fragen verfügbar.';return}placeSession={free:true,st:placeStage(),questions,idx:0,correct:0,per:{},miss:[]};placeFeedback=null;courseView='exam';render();window.scrollTo(0,0)}
+function freePlaceSetup(){let max=learnedPlaceMax(),ranges=placeStages.map(([a,b])=>({a,b})).filter(x=>x.b<=max);return `<h1>Freies Ortetraining 🧠</h1><p class="muted">Übe bereits bestandene Orte – ohne neue Orte freizuschalten.</p><div class="panel"><label for="freeRange">Welche Orte?</label><select id="freeRange" class="answer"><option value="all" ${freePlaceConfig.range==='all'?'selected':''}>Alle gelernten Orte (1–${max})</option>${ranges.map(({a,b})=>`<option value="${a}-${b}" ${freePlaceConfig.range===`${a}-${b}`?'selected':''}>Orte ${a}–${b}</option>`).join('')}</select><p><label for="freeKind">Fragenart</label></p><select id="freeKind" class="answer">${[['mixed','Alles gemischt'],['number','Nummer → Ort'],['position','Ort → Nummer'],['picture','Bilder erkennen'],['next','Nächster Ort'],['previous','Vorheriger Ort']].map(([v,t])=>`<option value="${v}" ${freePlaceConfig.kind===v?'selected':''}>${t}</option>`).join('')}</select><p><label for="freeCount">Anzahl der Fragen</label></p><select id="freeCount" class="answer">${[10,20,30].map(n=>`<option value="${n}" ${Number(freePlaceConfig.count)===n?'selected':''}>${n} Fragen</option>`).join('')}</select><p><button id="freeStart" style="width:100%">Training starten</button></p><p id="freeStatus" role="status" class="muted"></p><button id="freeBack" class="secondary" style="width:100%">Zur Übersicht</button></div>`}
 const originalCourseHomeForFree=courseHome;
 courseHome=function(){let html=originalCourseHomeForFree();let max=learnedPlaceMax();let block=`<div class="panel"><h2>Freies Ortetraining</h2><p>Alle bereits bestandenen Orte gleichmäßig üben. Kein Freischalten, kein Prüfungsdruck.</p>${max?`<button id="freeSetup" style="width:100%">Freies Training starten (1–${max})</button>`:'<p class="muted small">Nach der ersten bestandenen Etappe verfügbar.</p>'}</div>`;return html.replace('<div class="panel"><h2>Dein Weg</h2>',block+'<div class="panel"><h2>Dein Weg</h2>')};
 const previousCourseWithFree=course;
 course=function(){if(courseView==='freeSetup')return freePlaceSetup();return previousCourseWithFree()};
-placeExamHtml=function(){let s=placeSession,q=s.questions[s.idx],pct=Math.round(s.idx/s.questions.length*100);return `<div class="place-quiz"><div class="sectionhead"><h1>${s.free?'Freies Training':'Ortsprüfung'}</h1><button id="placeExit" class="subtle" type="button">Beenden</button></div><p class="muted small">Frage ${s.idx+1} von ${s.questions.length}${s.free?' · Ohne Freischaltung':` · Etappe ${s.st+1}`}</p><div class="progress"><div style="width:${pct}%"></div></div><div class="panel"><h2>${escapeHtml(q.stem)}</h2>${q.illustration}<div class="choices">${q.options.map((v,i)=>`<button data-place-answer="${i}" ${placeFeedback?'disabled':''}>${escapeHtml(v)}</button>`).join('')}</div>${placeFeedback?`<div class="feedback ${placeFeedback.ok?'good':'bad'}">${placeFeedback.ok?'✓ Richtig!':'✗ Noch nicht.'} Antwort: <b>${escapeHtml(placeFeedback.correct)}</b></div>`:''}</div>${placeFeedback?`<div class="place-next"><button id="placeContinue" type="button">${s.idx+1===s.questions.length?'Ergebnis ansehen':'Nächste Frage →'}</button></div>`:''}</div>`};
+placeExamHtml=function(){let s=placeSession,q=s.questions[s.idx],pct=Math.round(s.idx/s.questions.length*100);return `<div class="place-quiz"><div class="sectionhead"><h1>${s.adaptive?'Intelligentes Training':s.free?'Freies Training':'Ortsprüfung'}</h1><button id="placeExit" class="subtle" type="button">Beenden</button></div><p class="muted small">Frage ${s.idx+1} von ${s.questions.length}${s.free?' · Ohne Freischaltung':` · Etappe ${s.st+1}`}</p><div class="progress"><div style="width:${pct}%"></div></div><div class="panel"><h2>${escapeHtml(q.stem)}</h2>${q.illustration}<div class="choices">${q.options.map((v,i)=>`<button data-place-answer="${i}" ${placeFeedback?'disabled':''}>${escapeHtml(v)}</button>`).join('')}</div>${placeFeedback?`<div class="feedback ${placeFeedback.ok?'good':'bad'}">${placeFeedback.ok?'✓ Richtig!':'✗ Noch nicht.'} Antwort: <b>${escapeHtml(placeFeedback.correct)}</b></div>`:''}</div>${placeFeedback?`<div class="place-next"><button id="placeContinue" type="button">${s.idx+1===s.questions.length?'Ergebnis ansehen':'Nächste Frage →'}</button></div>`:''}</div>`};
 const oldPlaceAdvanceForFree=placeAdvance;
 placeAdvance=function(){if(!placeSession)return;if(!placeSession.free){oldPlaceAdvanceForFree();window.scrollTo(0,0);return}placeSession.idx++;placeFeedback=null;if(placeSession.idx>=placeSession.questions.length){placeSession.passed=false;courseView='examDone'}render();window.scrollTo(0,0)};
 const originalPlaceDoneForFree=placeExamDone;
@@ -169,119 +207,239 @@ bind=function(){oldFreeBind();const e=id=>$(id);if(e('freeSetup'))e('freeSetup')
  // Fixierter Weiter-Button oberhalb der iPhone-Navigation, keine automatische Weiterleitung.
 };
 
-// Adaptiver Orts-Lerncoach v2: getrennte Profile je Ort und Fragerichtung.
+// Bestehende Zähler bleiben erhalten. Neue Stichproben werden pro Fragetyp ergänzt.
 const coachKey='mnemonica-place-coach-v2';
-let coachData;try{coachData=JSON.parse(localStorage.getItem(coachKey))||{}}catch(e){coachData={}}
-if(!coachData.profiles||typeof coachData.profiles!=='object')coachData.profiles={};
-if(!Array.isArray(coachData.rounds))coachData.rounds=[];
-let placeQuestionShownAt=0,adaptiveActive=false;
-const coachSave=()=>{try{localStorage.setItem(coachKey,JSON.stringify(coachData))}catch(e){console.warn('Lerncoach konnte nicht gespeichert werden',e)}};
-const coachProfile=(n,type)=>coachData.profiles[n+':'+type]||{total:0,correct:0,wrong:0,slow:0,avgMs:0,last:0,streak:0};
-function coachLog(q,ok,elapsed){
- const id=q.n+':'+q.type,p=coachProfile(q.n,q.type),ms=Math.max(0,Math.min(120000,elapsed));
- p.total++;p.correct+=ok?1:0;p.wrong+=ok?0:1;p.streak=ok?p.streak+1:0;
- // Keine starre individuelle Zeitbewertung vor ausreichend Daten; >45s als Unterbrechung behandeln.
- if(ms<=45000){p.avgMs=p.avgMs?Math.round(p.avgMs*.7+ms*.3):ms;if(ok&&ms>8000)p.slow++}
- p.last=Date.now();coachData.profiles[id]=p;coachSave();
+let coachData;
+function readCoachData(){
+ try{
+  const data=JSON.parse(localStorage.getItem(coachKey))||{};
+  return {...data,profiles:data.profiles||{},rounds:Array.isArray(data.rounds)?data.rounds:[]};
+ }catch(e){return {profiles:{},rounds:[]}}
+}
+coachData=readCoachData();
+const coachSave=()=>{
+ try{localStorage.setItem(coachKey,JSON.stringify(coachData))}
+ catch(e){console.warn('Lerncoach konnte nicht gespeichert werden',e)}
+};
+window.addEventListener('storage',e=>{
+ if(e.key===coachKey)coachData=readCoachData();
+});
+const coachProfile=(n,type)=>coachData.profiles[n+':'+type]||{total:0,correct:0,wrong:0,streak:0};
+const coachTypes={
+ number:'Nummer → Ort',position:'Ort → Nummer',picture:'Bild → Nummer',
+ next:'Nächster Ort',previous:'Vorheriger Ort'
+};
+const coachLabels={neutral:'Zu wenig Daten',green:'Sicher',yellow:'Unsicher',red:'Üben',locked:'Gesperrt'};
+const coachMedian=values=>{
+ const sorted=[...values].sort((a,b)=>a-b),mid=Math.floor(sorted.length/2);
+ return sorted.length%2?sorted[mid]:(sorted[mid-1]+sorted[mid])/2;
+};
+function coachLog(q,value,ms){
+ coachData=readCoachData();
+ const id=q.n+':'+q.type,p=coachProfile(q.n,q.type),ok=value===q.correct;
+ const wasSecure=coachRating(p)==='green';
+ const chosen=q.type==='number'?bookStops.indexOf(value)+1:q.type==='position'?Number(value):0;
+ p.total++;
+ p.correct+=Number(ok);
+ p.wrong+=Number(!ok);
+ p.streak=ok?p.streak+1:0;
+ p.last=Date.now();
+ p.errorsSinceSecure=wasSecure?(p.errorsSinceSecure||0)+Number(!ok):null;
+ p.recent=[...(p.recent||[]),{ok,other:!ok&&chosen>=1&&chosen<=26?chosen:0}].slice(-8);
+ coachRating(p,true);
+ if(ok&&ms!==null)p.times=[...(p.times||[]),ms].slice(-12);
+ coachData.profiles[id]=p;
+ coachSave();
+}
+function coachRating(p,ignoreTolerance=false){
+ // Mindestens fünf Antworten. Ab fünf neuen Antworten zählen die letzten bis zu acht.
+ // Bis dahin dienen die historischen Zähler als Grundlage. Die 80-%-Schwelle bildet den Ausgangspunkt.
+ // Eine zuvor sichere Richtung toleriert einen Fehler seit der letzten grünen Quote.
+ const recent=p.recent||[];
+ const total=recent.length>=5?recent.length:p.total;
+ const right=recent.length>=5?recent.filter(a=>a.ok).length:p.correct;
+ if(total<5)return 'neutral';
+ if(right/total>=.8)return 'green';
+ if(!ignoreTolerance&&(p.errorsSinceSecure===0||p.errorsSinceSecure===1))return 'green';
+ if(total-right>=2&&right/total<=.6)return 'red';
+ return 'yellow';
+}
+function coachPlaceStatus(directions){
+ // Ein Ort ist erst sicher, wenn alle aktuell übbaren Richtungen sicher sind.
+ if(directions.includes('red'))return 'red';
+ if(directions.includes('yellow'))return 'yellow';
+ return directions.every(status=>status==='green')?'green':'neutral';
 }
 function coachWeakness(n,type){
- let p=coachProfile(n,type),age=p.last?(Date.now()-p.last)/86400000:99;
- if(!p.total)return 2.5;
- let err=p.wrong/Math.max(1,p.total),slowness=p.total>=3?Math.min(2,Math.max(0,(p.avgMs-4500)/5500)):0;
- return 1+err*5+slowness+Math.min(2,age/14)-Math.min(.6,p.streak*.12);
+ return {green:1,neutral:2,yellow:4,red:7}[coachRating(coachProfile(n,type))];
 }
 function adaptivePlaceQuestions(){
- let pool=Array.from({length:learnedPlaceMax()},(_,i)=>i+1),count=20,types=['number','position','picture','next','previous'];
+ const max=learnedPlaceMax(),pool=Array.from({length:max},(_,i)=>i+1);
  if(!pool.length)return [];
- let questions=[],recent=[];
- for(let i=0;i<count;i++){
-  let candidates=[];
-  for(let n of pool)for(let type of types){if(type==='next'&&n===26||type==='previous'&&n===1)continue;
-   let weight=coachWeakness(n,type);if(recent.includes(n))weight*=.18;
-   candidates.push({n,type,weight});
-  }
-  // 40 % breit gestreute Fragen, 60 % gezielte Schwerpunkte; beide bleiben zufällig.
-  let broad=i%5===0||i%5===3;
+ const candidates=pool.flatMap(n=>validPlaceTypes(n,max).map(type=>({n,type,weight:coachWeakness(n,type)})));
+ const questions=[],recent=[],broadPlaces=[];
+ for(let i=0;i<20;i++){
   let picked;
-  if(broad){let available=candidates.filter(c=>!recent.includes(c.n));picked=shuffle(available.length?available:candidates)[0]}
-  else{let total=candidates.reduce((sum,c)=>sum+c.weight,0),r=Math.random()*total;picked=candidates[candidates.length-1];for(let c of candidates){r-=c.weight;if(r<=0){picked=c;break}}}
-  questions.push(placeQuestion(picked.n,picked.type,pool));recent.push(picked.n);if(recent.length>Math.min(5,pool.length-1))recent.shift();
+  if(i%5===0||i%5===3){
+   // Acht Fragen decken verschiedene Orte ab, unabhängig von ihrem Lernstatus.
+   if(!broadPlaces.length)broadPlaces.push(...shuffle(pool));
+   const index=broadPlaces.findIndex(n=>!recent.includes(n));
+   const [n]=broadPlaces.splice(Math.max(0,index),1);
+   picked=shuffle(candidates.filter(c=>c.n===n))[0];
+  }else{
+   const available=candidates.filter(c=>!recent.includes(c.n));
+   let draw=Math.random()*available.reduce((sum,c)=>sum+c.weight,0);
+   picked=available.find(c=>(draw-=c.weight)<0)||available.at(-1);
+  }
+  questions.push(placeQuestion(picked.n,picked.type,pool));
+  recent.push(picked.n);
+  if(recent.length>Math.min(2,max-1))recent.shift();
  }
  return questions;
 }
 function beginAdaptiveTraining(){
- let qs=adaptivePlaceQuestions();if(!qs.length)return;
- adaptiveActive=true;placeSession={free:true,adaptive:true,st:placeStage(),questions:qs,idx:0,correct:0,per:{},miss:[],timings:[]};
+ const questions=adaptivePlaceQuestions();
+ if(!questions.length)return;
+ placeSession={free:true,adaptive:true,st:placeStage(),questions,idx:0,correct:0,per:{},miss:[]};
  placeFeedback=null;courseView='exam';render();window.scrollTo(0,0);
 }
+
 const coachOldCheck=placeCheck;
 placeCheck=function(value){
- if(!placeSession||placeFeedback)return;
- const q=placeSession.questions[placeSession.idx],ok=value===q.correct;
- const ms=placeQuestionShownAt?performance.now()-placeQuestionShownAt:0;
- coachLog(q,ok,ms);if(!placeSession.timings)placeSession.timings=[];
- placeSession.timings.push({n:q.n,type:q.type,ok,ms:Math.round(ms)});
+ if(page!=='course'||courseView!=='exam'||!placeSession||placeFeedback)return;
+ const q=placeSession.questions[placeSession.idx];
+ if(!q?.options.includes(value))return;
+ const timer=placeSession.timer;
+ const elapsed=timer?.question===q&&timer.started!==null&&!document.hidden
+  ?performance.now()-timer.started:null;
+ const ms=elapsed!==null&&elapsed>0&&elapsed<=45000?Math.round(elapsed):null;
+ coachLog(q,value,ms);
+ (placeSession.timings||=[]).push(ms);
  coachOldCheck(value);
+ const feedback=document.querySelector('.place-quiz .feedback');
+ const next=$('placeContinue');
+ next?.focus({preventScroll:true});
+ if(feedback&&next&&feedback.getBoundingClientRect().bottom>next.getBoundingClientRect().top){
+  feedback.scrollIntoView({block:'center'});
+ }
 };
-const coachOldExamHtml=placeExamHtml;
-placeExamHtml=function(){let html=coachOldExamHtml();return placeSession?.adaptive?html.replace('Freies Training</h1>','Intelligentes Training</h1>'):html};
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden&&placeSession?.timer){
+  placeSession.timer.started=null;
+  placeSession.timer.interrupted=true;
+ }
+});
 const coachOldAdvance=placeAdvance;
 placeAdvance=function(){
- const finishing=placeSession&&placeSession.idx===placeSession.questions.length-1;
- coachOldAdvance();
- if(finishing&&placeSession){let t=placeSession.timings||[];
-  coachData.rounds.push({date:Date.now(),adaptive:!!placeSession.adaptive,free:!!placeSession.free,correct:placeSession.correct,total:placeSession.questions.length,avgMs:Math.round(t.filter(x=>x.ms<=45000).reduce((a,x)=>a+x.ms,0)/Math.max(1,t.filter(x=>x.ms<=45000).length))});
-  coachData.rounds=coachData.rounds.slice(-80);coachSave();
+ if(courseView!=='exam'||!placeSession||!placeFeedback)return;
+ if(placeSession.idx===placeSession.questions.length-1){
+  const times=placeSession.timings.filter(ms=>ms!==null);
+  coachData=readCoachData();
+  coachData.rounds.push({
+   date:Date.now(),adaptive:!!placeSession.adaptive,free:!!placeSession.free,
+   correct:placeSession.correct,total:placeSession.questions.length,
+   medianMs:times.length>=3?coachMedian(times):null
+  });
+  coachData.rounds=coachData.rounds.slice(-80);
+  coachSave();
  }
+ coachOldAdvance();
 };
-const coachOldCourse=course;
-course=function(){return coachOldCourse()};
+
+function coachSummary(){
+ const max=learnedPlaceMax();
+ const places=Array.from({length:max},(_,i)=>{
+  const n=i+1;
+  return validPlaceTypes(n,max).map(type=>{
+   const profile=coachProfile(n,type);
+   return {n,type,profile,status:coachRating(profile)};
+  });
+ });
+ const all=places.flat();
+ const weaknesses=all.filter(x=>x.status==='red'||x.status==='yellow');
+ weaknesses.sort((a,b)=>coachWeakness(b.n,b.type)-coachWeakness(a.n,a.type));
+ const focus=weaknesses[0];
+ if(focus){
+  const {n,type,profile}=focus;
+  const recent=profile.recent||[];
+  const other=recent.find(a=>a.other&&a.other<=max&&recent.filter(b=>b.other===a.other).length>=2)?.other;
+  if(other)return `Bei „${coachTypes[type]}“ hast du für Ort ${n} wiederholt Ort ${other} gewählt. Übe beide gezielt.`;
+  const opposite=type==='number'?'position':type==='position'?'number':null;
+  const label=`${n} · ${escapeHtml(placeLabel(n))}`;
+  if(opposite&&coachRating(coachProfile(n,opposite))==='green'){
+   return `Bei ${label} klappt „${coachTypes[opposite]}“ zuverlässig. Übe gezielt „${coachTypes[type]}“.`;
+  }
+  return `Übe bei ${label} gezielt „${coachTypes[type]}“.`;
+ }
+ if(all.length&&all.every(x=>x.status==='green'))return 'Deine freigeschalteten Orte sitzen in allen verfügbaren Fragerichtungen. Übe sie gemischt weiter.';
+ return 'Für eine persönliche Empfehlung fehlen noch Antworten in einigen Fragerichtungen. Übe zunächst gemischt.';
+}
 const coachOldHome=courseHome;
 courseHome=function(){
- let html=coachOldHome(),max=learnedPlaceMax();
- let summary=coachSummary();
- let block=`<div class="panel"><h2>🧠 Dein Lerncoach</h2><p class="muted small">Antwortzeiten und Fehler werden bei jeder Ortsprüfung lokal erfasst. Einzelne langsame Antworten werden nicht überbewertet.</p>${max?`<p>${summary}</p><button id="adaptiveStart" style="width:100%">✨ Empfohlenes Training starten</button><p class="small muted">20 Fragen · Schwerpunkt auf unsicheren Verbindungen · keine Freischaltung</p>`:'<p class="muted">Nach der ersten bestandenen Etappe kannst du gezielt trainieren.</p>'}<button id="coachStats" class="secondary" style="width:100%">Lernstatistik ansehen</button></div>`;
- return html.replace('<div class="panel"><h2>Dein Weg</h2>',block+'<div class="panel"><h2>Dein Weg</h2>');
+ const block=`<div class="panel"><h2>Dein Lerncoach</h2><p>${coachSummary()}</p>
+ ${learnedPlaceMax()?'<button id="adaptiveStart">Empfohlenes Training starten</button><p class="small muted">20 Fragen · gezieltes Üben und gemischte Wiederholung</p>':'<p class="muted">Das Training ist nach der ersten bestandenen Etappe verfügbar.</p>'}
+ <button id="coachStats" class="secondary">Stärken und Schwächen ansehen</button></div>`;
+ return coachOldHome().replace('<div class="panel"><h2>Dein Weg</h2>',block+'<div class="panel"><h2>Dein Weg</h2>');
 };
-function coachSummary(){
- let max=learnedPlaceMax(),all=[];
- for(let n=1;n<=max;n++)for(let t of ['number','position','picture','next','previous']){
-  if(t==='previous'&&n===1||t==='next'&&n===26)continue;
-  let p=coachProfile(n,t);if(p.total>=3)all.push({n,t,score:coachWeakness(n,t),p});
- }
- if(!all.length)return 'Noch nicht genügend Antworten für eine persönliche Empfehlung. Trainiere zunächst einige Runden.';
- all.sort((a,b)=>b.score-a.score);
- let top=[...new Set(all.slice(0,5).map(x=>x.n))].slice(0,3);
- return `Heute besonders üben: <b>${top.map(n=>`${n} · ${escapeHtml(placeLabel(n))}`).join(', ')}</b>.`;
-}
 function coachStatsHtml(){
- let max=learnedPlaceMax(),rows=[];
- for(let n=1;n<=max;n++){
-  let p=Object.entries(coachData.profiles).filter(([key])=>key.startsWith(n+':')).map(([,p])=>p);
-  let total=p.reduce((a,x)=>a+x.total,0),right=p.reduce((a,x)=>a+x.correct,0),times=p.filter(x=>x.avgMs>0),avg=times.length?times.reduce((a,x)=>a+x.avgMs,0)/times.length:0;
-  rows.push(`<div class="book-step"><b>${n} · ${escapeHtml(placeLabel(n))}</b><br><span class="small muted">${total?`${right}/${total} richtig · Ø ${((avg||0)/1000).toFixed(1)} s (Schätzwert)`: 'Noch keine Antworten'}</span></div>`);
- }
- let rounds=coachData.rounds.slice(-5).reverse();
- return `<h1>🧠 Lernstatistik</h1><p class="muted">Orte und Fragerichtungen werden getrennt gespeichert. Die Durchschnittszeiten sind geglättete Näherungswerte; Pausen über 45 Sekunden werden nicht eingerechnet.</p><div class="panel"><h2>Deine letzten Runden</h2>${rounds.length?rounds.map(r=>`<p class="small">${new Date(r.date).toLocaleDateString('de-DE')}: ${r.correct}/${r.total} richtig · Ø ${(r.avgMs/1000).toFixed(1)} s</p>`).join(''):'<p class="muted">Noch keine abgeschlossene Runde.</p>'}</div><div class="panel"><h2>Orte im Überblick</h2>${rows.join('')||'<p class="muted">Noch keine abgeschlossenen Etappen.</p>'}</div><p><button id="coachBack" class="secondary" style="width:100%">Zurück zum Lernkurs</button></p>`;
+ const max=learnedPlaceMax();
+ const rows=bookStops.map((name,i)=>{
+  const n=i+1,valid=validPlaceTypes(n,max),locked=n>max;
+  const directions=Object.keys(coachTypes).filter(type=>valid.includes(type)||coachProfile(n,type).total);
+  const status=locked?'locked':coachPlaceStatus(valid.map(type=>coachRating(coachProfile(n,type))));
+  const profiles=directions.map(type=>coachProfile(n,type));
+  const total=profiles.reduce((sum,p)=>sum+p.total,0),right=profiles.reduce((sum,p)=>sum+p.correct,0);
+  const lines=directions.map(type=>{
+   const p=coachProfile(n,type),times=p.times||[];
+   const rating=locked?'Gesperrt':!valid.includes(type)?'Derzeit nicht übbar':coachLabels[coachRating(p)];
+   const seconds=values=>Math.max(1,Math.round(coachMedian(values)/1000));
+   const timing=times.length>=5?` · zuletzt typisch ${seconds(times.slice(-5))} s`:'';
+   const earlier=times.length>=10?` · davor ${seconds(times.slice(-10,-5))} s`:'';
+   return `<div><b>${coachTypes[type]}</b><br><span class="muted">${rating} · ${p.correct}/${p.total} richtig${timing}${earlier}</span></div>`;
+  }).join('');
+  return `<details class="coach-row"><summary><strong>${n} · ${escapeHtml(name)}</strong>
+   <span class="coach-status ${status}">${coachLabels[status]}</span>
+   <span class="coach-count muted">${total?`${right}/${total} richtig`:'0 Antworten'}</span></summary>
+   <div class="coach-directions">${lines||'Noch keine Antworten.'}</div></details>`;
+ }).join('');
+ const rounds=coachData.rounds.slice(-5).reverse();
+ return `<h1>Stärken und Schwächen</h1>
+ <div class="panel"><h2>Deine Empfehlung</h2><p>${coachSummary()}</p>
+ ${max?'<button id="adaptiveStart">Empfohlenes Training starten</button>':''}</div>
+ <div class="panel coach-list"><h2>Alle 26 Orte</h2>
+ <details class="coach-rules"><summary>Wie bewertet der Coach?</summary>
+ <p>Pro Fragerichtung braucht der Coach mindestens fünf Antworten. Ab fünf neuen Antworten zählen die letzten bis zu acht. Ab 80 % gilt eine Richtung als sicher. Bei höchstens 60 % und mindestens zwei Fehlern empfiehlt der Coach gezieltes Üben. Dazwischen gilt die Richtung als unsicher. Eine sichere Richtung verliert ihren Status erst nach weiteren Fehlern.</p>
+ <p>Ein Ort gilt als sicher, wenn alle verfügbaren Richtungen sicher sind. Die schwächste belegte Richtung bestimmt den Übungsbedarf. Die Trefferzahlen zeigen alle bisherigen Antworten. Die typische Antwortzeit ist der Median aus fünf richtigen Antworten derselben Richtung. Pausen über 45 Sekunden und Antworten nach einem Wechsel in den Hintergrund zählen bei der Zeitmessung nicht.</p></details>
+ ${rows}</div>
+ <details class="panel"><summary>Letzte Runden</summary>${rounds.length?rounds.map(r=>{
+  const time=Number.isFinite(r.medianMs)?` · Median ${Math.max(1,Math.round(r.medianMs/1000))} s`:
+   r.avgMs>0?` · früherer Ø ${Math.max(1,Math.round(r.avgMs/1000))} s`:'';
+  return `<p>${new Date(r.date).toLocaleDateString('de-DE')} · ${r.correct}/${r.total} richtig${time}</p>`;
+ }).join(''):'<p>Noch keine abgeschlossene Runde.</p>'}</details>
+ <p><button id="coachBack" class="secondary">Zurück zum Lernkurs</button></p>`;
 }
 const coachCourseRender=course;
-course=function(){if(courseView==='coachStats')return coachStatsHtml();return coachCourseRender()};
+course=function(){return courseView==='coachStats'?coachStatsHtml():coachCourseRender()};
 const coachOldBind=bind;
-bind=function(){coachOldBind();if($('adaptiveStart'))$('adaptiveStart').onclick=beginAdaptiveTraining;
+bind=function(){
+ coachOldBind();
+ if($('adaptiveStart'))$('adaptiveStart').onclick=beginAdaptiveTraining;
  if($('coachStats'))$('coachStats').onclick=()=>{courseView='coachStats';render();window.scrollTo(0,0)};
  if($('coachBack'))$('coachBack').onclick=()=>{courseView='intro';render();window.scrollTo(0,0)};
- if(page==='course'&&courseView==='exam'&&!placeFeedback)placeQuestionShownAt=performance.now();
+ if($('adaptiveAgain'))$('adaptiveAgain').onclick=beginAdaptiveTraining;
+ if(page==='course'&&courseView==='exam'&&!placeFeedback){
+  const q=placeSession.questions[placeSession.idx];
+  if(placeSession.timer?.question!==q){
+   placeSession.timer={question:q,started:q.type==='picture'||document.hidden?null:performance.now()};
+  }
+ }
 };
 const coachOldDone=placeExamDone;
 placeExamDone=function(){
- let html=coachOldDone();if(!placeSession)return html;
- let t=placeSession.timings||[],valid=t.filter(x=>x.ms<=45000),avg=valid.length?valid.reduce((a,x)=>a+x.ms,0)/valid.length:0;
- let slow=t.filter(x=>x.ok&&x.ms>8000&&x.ms<=45000).map(x=>x.n),miss=t.filter(x=>!x.ok).map(x=>x.n);
- let focus=[...new Set([...miss,...slow])].slice(0,5);
- let box=`<div class="panel"><h2>🧠 Auswertung</h2><p>${valid.length?`Ø Antwortzeit: <b>${(avg/1000).toFixed(1)} Sekunden</b> (ohne längere Pausen).`:'Noch keine Zeitdaten.'}</p>${focus.length?`<p>Zum Wiederholen: ${focus.map(n=>`${n} · ${escapeHtml(placeLabel(n))}`).join(', ')}.</p>`:'<p class="good">Keine auffälligen Antworten in dieser Runde.</p>'}<p class="small muted">Die Einschätzung wird über mehrere Runden zuverlässiger.</p>${learnedPlaceMax()?'<button id="adaptiveAgain" style="width:100%">✨ Empfohlenes Training starten</button>':''}</div>`;
- return html+box;
+ const html=coachOldDone();
+ if(!placeSession?.adaptive)return html;
+ return html+`<div class="panel"><p>${coachSummary()}</p>
+ <button id="adaptiveAgain" class="secondary">Intelligentes Training wiederholen</button></div>`;
 };
-const coachDoneBind=bind;
-bind=function(){coachDoneBind();if($('adaptiveAgain'))$('adaptiveAgain').onclick=beginAdaptiveTraining};
 
 </script></body></html>
