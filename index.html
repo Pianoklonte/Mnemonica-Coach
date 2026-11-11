@@ -36,9 +36,9 @@ return progress+q}
 function learn(){if(phase==='intro'){let c=queue[idx];return `<h1>Neue Karten entdecken</h1><p class="muted">Präge dir die Verbindung von Position und Karte ein. Danach werden die Karten gemischt abgefragt.</p><p class="small muted">Karte ${idx+1} von ${queue.length}</p>${cardHtml(c)}<div class="question">Position ${c.pos}</div><p style="text-align:center">${c.name}</p><div class="feedback">${hint(c)}</div><p><button id="introNext" style="width:100%">${idx+1===queue.length?'Gemischte Abfrage starten':'Nächste Karte'}</button></p>`}
 if(phase==='done'){let missed=[...new Set(sessionErrors)].map(id=>cards.find(c=>c.id===id));return `<h1>Training geschafft! 🎉</h1><div class="panel"><div class="number">${sessionCorrect}/${sessionAnswers}</div><p style="text-align:center">Richtige Antworten</p>${missed.length?`<p class="muted">Diese Karten solltest du noch einmal üben: ${missed.map(c=>c.pos+'. '+c.name).join(', ')}.</p><button id="retry" style="width:100%">Fehler gezielt wiederholen</button>`:'<p class="good">Super! In dieser Runde war alles richtig.</p>'}<p><button id="again" class="secondary" style="width:100%">Neue gemischte Runde</button></p></div>`}return `<h1>Gedächtnistraining</h1>${quizHtml()}`}
 function stack(){return `<h1>Der komplette Stack</h1><p class="muted">Tippe auf eine Karte, um deine persönliche Eselsbrücke zu speichern.</p><div class="stack">${cards.map(c=>`<div data-card="${c.pos}" style="cursor:pointer"><b>${c.pos}.</b> <span class="${'DH'.includes(c.s)?'bad':''}">${c.r==='T'?'10':c.r}${suit[c.s]}</span> ${c.name} ${state.notes[c.id]?'💡':''}</div>`).join('')}</div><div id="notePanel"></div>`}
-function stats(){let h=state.history,correct=h.filter(x=>x.ok).length;return `<h1>Dein Fortschritt</h1><div class="panel stat"><div><strong>${h.length}</strong><span class="small">Antworten</span></div><div><strong>${h.length?Math.round(correct/h.length*100):0}%</strong><span class="small">Trefferquote</span></div><div><strong>${state.sessions}</strong><span class="small">Trainings</span></div></div><div class="panel"><h2>Was du schon kannst</h2><p>${known()} Karten sind gefestigt. Du trainierst aktuell ${state.unlocked} Karten.</p></div><div class="panel"><h2>Datensicherung</h2><button id="export" class="secondary">Lernstand sichern (JSON)</button><p class="small muted">Die Daten liegen nur in diesem Browser. Sichere sie gelegentlich, bevor du Browserdaten löschst.</p><button id="import" class="secondary">Lernstand wiederherstellen</button><input id="importFile" type="file" accept="application/json,.json" hidden><p><button id="reset" class="secondary">Lernstand zurücksetzen</button></p></div>`}
+function stats(){let h=state.history,correct=h.filter(x=>x.ok).length;return `<h1>Dein Fortschritt</h1><div class="panel stat"><div><strong>${h.length}</strong><span class="small">Antworten</span></div><div><strong>${h.length?Math.round(correct/h.length*100):0}%</strong><span class="small">Trefferquote</span></div><div><strong>${state.sessions}</strong><span class="small">Trainings</span></div></div><div class="panel"><h2>Was du schon kannst</h2><p>${known()} Karten sind gefestigt. Du trainierst aktuell ${state.unlocked} Karten.</p></div><div class="panel"><h2>Datensicherung</h2><button id="export" class="secondary">Lernstand als JSON sichern</button><p class="small muted">Die JSON-Datei sichert Lernkurs, Kartenmodus, Lerncoach-Statistik und Notizen. Buchbilder kannst du auf einem neuen Gerät erneut aus deiner PDF importieren.</p><button id="import" class="secondary">Lernstand wiederherstellen</button><input id="importFile" type="file" accept="application/json,.json" hidden><p><button id="reset" class="secondary">Lernstand zurücksetzen</button></p></div>`}
 function render(){document.querySelectorAll('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===page));$('headProgress').textContent=`${known()} gefestigt`;$('screen').innerHTML=page==='home'?home():page==='learn'?learn():page==='stack'?stack():stats();bind()}
-function bind(){const b=id=>$(id);if(b('start'))b('start').onclick=start;if(b('practice'))b('practice').onclick=()=>training('guided');if(b('guided'))b('guided').onclick=()=>training('guided');if(b('fast'))b('fast').onclick=()=>training('fast');if(b('expand'))b('expand').onclick=()=>{state.unlocked=Math.min(52,state.unlocked+5);save();start()};if(b('introNext'))b('introNext').onclick=()=>{idx++;if(idx>=queue.length)training('guided',queue);else render()};if(b('showHint'))b('showHint').onclick=()=>{hintVisible=!hintVisible;render()};if(b('check')){b('check').onclick=()=>{let v=dir==='position'?b('entry').value.trim():b('rank').value+b('suit').value;if(!v||dir==='card'&&(!b('rank').value||!b('suit').value))return;result=dir==='position'?Number(v)===current.pos:v===current.id;record(result);render()};if(b('entry'))b('entry').onkeydown=e=>{if(e.key==='Enter')b('check').click()}}if(b('next'))b('next').onclick=()=>{idx++;next()};if(b('again'))b('again').onclick=()=>training(mode);if(b('retry'))b('retry').onclick=()=>training(mode,[...new Set(sessionErrors)].map(id=>cards.find(c=>c.id===id)));if(b('reset'))b('reset').onclick=()=>{if(confirm('Wirklich den gesamten Lernfortschritt löschen?')){localStorage.removeItem(key);location.reload()}};if(b('export'))b('export').onclick=()=>{let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}));a.download='mnemonica-lernstand.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)};if(b('import'))b('import').onclick=()=>b('importFile').click();if(b('importFile'))b('importFile').onchange=async e=>{try{let obj=JSON.parse(await e.target.files[0].text());if(!obj||!obj.records||!obj.notes||!Array.isArray(obj.history))throw Error('Ungültige Sicherungsdatei');if(confirm('Aktuellen Lernstand durch diese Sicherung ersetzen?')){localStorage.setItem(key,JSON.stringify(obj));location.reload()}}catch(err){alert('Sicherung konnte nicht gelesen werden: '+err.message)}};document.querySelectorAll('[data-card]').forEach(el=>el.onclick=()=>{let c=cards[Number(el.dataset.card)-1];$('notePanel').innerHTML=`<div class="panel"><h2>${c.pos}. ${c.name}</h2><p class="muted">Deine persönliche Merkhilfe</p><textarea id="noteText">${escapeHtml(state.notes[c.id]||'')}</textarea><p><button id="saveNote">Speichern</button></p></div>`;$('saveNote').onclick=()=>{state.notes[c.id]=$('noteText').value;save();render()};$('notePanel').scrollIntoView({behavior:'smooth',block:'nearest'})})}
+function bind(){const b=id=>$(id);if(b('start'))b('start').onclick=start;if(b('practice'))b('practice').onclick=()=>training('guided');if(b('guided'))b('guided').onclick=()=>training('guided');if(b('fast'))b('fast').onclick=()=>training('fast');if(b('expand'))b('expand').onclick=()=>{state.unlocked=Math.min(52,state.unlocked+5);save();start()};if(b('introNext'))b('introNext').onclick=()=>{idx++;if(idx>=queue.length)training('guided',queue);else render()};if(b('showHint'))b('showHint').onclick=()=>{hintVisible=!hintVisible;render()};if(b('check')){b('check').onclick=()=>{let v=dir==='position'?b('entry').value.trim():b('rank').value+b('suit').value;if(!v||dir==='card'&&(!b('rank').value||!b('suit').value))return;result=dir==='position'?Number(v)===current.pos:v===current.id;record(result);render()};if(b('entry'))b('entry').onkeydown=e=>{if(e.key==='Enter')b('check').click()}}if(b('next'))b('next').onclick=()=>{idx++;next()};if(b('again'))b('again').onclick=()=>training(mode);if(b('retry'))b('retry').onclick=()=>training(mode,[...new Set(sessionErrors)].map(id=>cards.find(c=>c.id===id)));if(b('reset'))b('reset').onclick=()=>{if(confirm('Wirklich den gesamten Lernfortschritt löschen?')){localStorage.removeItem(key);location.reload()}};if(b('export'))b('export').onclick=downloadLearningBackup;if(b('import'))b('import').onclick=()=>b('importFile').click();if(b('importFile'))b('importFile').onchange=importLearningBackup;document.querySelectorAll('[data-card]').forEach(el=>el.onclick=()=>{let c=cards[Number(el.dataset.card)-1];$('notePanel').innerHTML=`<div class="panel"><h2>${c.pos}. ${c.name}</h2><p class="muted">Deine persönliche Merkhilfe</p><textarea id="noteText">${escapeHtml(state.notes[c.id]||'')}</textarea><p><button id="saveNote">Speichern</button></p></div>`;$('saveNote').onclick=()=>{state.notes[c.id]=$('noteText').value;save();render()};$('notePanel').scrollIntoView({behavior:'smooth',block:'nearest'})})}
 
 // Memory Arts integration: the original illustrations never leave the user's browser.
 const bookStops=['Turm','Schwan','Berge','Steinhand','Wasserfall','Strudel','Giraffe','Kopfloser Schneemann','Tunnel','Baumeule','Säulen','Ringmeister und Löwe','Schmetterling','Wüstensegelboot','Schlangen','Winde','Versteinerter Baumstumpf','Wolken','Wüsteninsel','Pfau','Geisterpferd','Hahnenkampf','Pegasus','Elefant','Knorriger Baum','Konquistador'];
@@ -441,5 +441,93 @@ placeExamDone=function(){
  return html+`<div class="panel"><p>${coachSummary()}</p>
  <button id="adaptiveAgain" class="secondary">Intelligentes Training wiederholen</button></div>`;
 };
+
+const backupFormat='mnemonica-coach-backup';
+const backupNoteKeys=bookStops.map((_,i)=>'mnemonica-place-'+(i+1));
+function createLearningBackup(){
+ const data={[key]:state,[courseKey]:courseState,[coachKey]:readCoachData()};
+ for(const storageKey of backupNoteKeys){
+  const value=localStorage.getItem(storageKey);
+  if(value!==null)data[storageKey]=value;
+ }
+ return {format:backupFormat,version:1,data};
+}
+function backupObject(value){
+ return value!==null&&typeof value==='object'&&!Array.isArray(value);
+}
+function validCardBackup(value){
+ return backupObject(value)&&backupObject(value.records)&&backupObject(value.notes)&&Array.isArray(value.history);
+}
+function parseLearningBackup(input){
+ const backup=JSON.parse(input);
+ if(validCardBackup(backup)&&!Object.hasOwn(backup,'format'))return {legacy:true,entries:[[key,JSON.stringify(backup)]]};
+ if(!backupObject(backup)||backup.format!==backupFormat||backup.version!==1||!backupObject(backup.data)){
+  throw new Error('Die Datei ist keine unterstützte Mnemonica-Sicherung.');
+ }
+ const validators={
+  [key]:validCardBackup,
+  [courseKey]:value=>backupObject(value)&&Number.isInteger(value.mastered)&&value.mastered>=0&&value.mastered<=6&&Array.isArray(value.attempts),
+  [coachKey]:value=>backupObject(value)&&backupObject(value.profiles)&&Array.isArray(value.rounds)&&Object.values(value.profiles).every(backupObject)
+ };
+ const entries=[];
+ for(const [storageKey,value] of Object.entries(backup.data)){
+  if(backupNoteKeys.includes(storageKey)&&typeof value==='string'){
+   entries.push([storageKey,value]);
+  }else if(Object.hasOwn(validators,storageKey)&&validators[storageKey](value)){
+   entries.push([storageKey,JSON.stringify(value)]);
+  }else{
+   throw new Error('Die Sicherung enthält ungültige Lernstandsdaten.');
+  }
+ }
+ return {legacy:false,entries};
+}
+function restoreLearningBackup(entries){
+ const previous=entries.map(([storageKey])=>[storageKey,localStorage.getItem(storageKey)]);
+ let written=0;
+ try{
+  for(const [storageKey,value] of entries){
+   localStorage.setItem(storageKey,value);
+   written++;
+  }
+ }catch(error){
+  for(const [storageKey,value] of previous.slice(0,written).reverse()){
+   if(value===null)localStorage.removeItem(storageKey);
+   else localStorage.setItem(storageKey,value);
+  }
+  throw error;
+ }
+}
+function downloadLearningBackup(){
+ try{
+  const backup=createLearningBackup();
+  const link=document.createElement('a');
+  link.href=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
+  link.download='mnemonica-lernsicherung-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(()=>URL.revokeObjectURL(link.href),30000);
+ }catch(error){
+  alert('Die Sicherung konnte nicht erstellt werden: '+error.message);
+ }
+}
+async function importLearningBackup(event){
+ const input=event.target,file=input.files[0];
+ if(!file)return;
+ try{
+  const {legacy,entries}=parseLearningBackup(await file.text());
+  if(!entries.length){alert('In dieser Sicherung ist noch kein Lernstand gespeichert.');return}
+  const message=legacy
+   ?'Diese ältere Datei enthält nur den Kartenmodus. Möchtest du diesen wiederherstellen?'
+   :'Möchtest du die Lernstände und Notizen aus dieser Datei wiederherstellen? Die entsprechenden Daten auf diesem Gerät werden ersetzt.';
+  if(!confirm(message))return;
+  restoreLearningBackup(entries);
+  location.reload();
+ }catch(error){
+  alert('Die Sicherung konnte nicht wiederhergestellt werden: '+error.message);
+ }finally{
+  input.value='';
+ }
+}
 
 </script></body></html>
