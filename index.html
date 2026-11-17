@@ -1,4 +1,4 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101b28"><title>Mnemonica Coach</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><style>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1520"><title>Mnemonica Coach</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><style>
 :root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#f4f6fa;background:#101b28}*{box-sizing:border-box}body{margin:0}main{max-width:520px;margin:auto;padding:24px 18px 90px}header{display:flex;justify-content:space-between;align-items:center}h1{font-size:27px;margin:12px 0 4px}h2{font-size:20px}.muted{color:#9eafc1}.panel{background:#1d2b3b;border:1px solid #344357;border-radius:20px;padding:18px;margin-top:18px}.stat{display:flex;justify-content:space-between;gap:10px}.stat>div{flex:1;text-align:center;background:#26384b;padding:12px 4px;border-radius:12px}.stat strong{display:block;font-size:22px}button,input,select{font:inherit}button{border:0;border-radius:13px;background:#d5b779;color:#172333;font-weight:700;padding:14px 16px;cursor:pointer}button.secondary{background:#31465d;color:white}button:disabled{opacity:.4}.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{flex:1}.card{background:#fff;color:#1a2230;border-radius:16px;border:2px solid #e1e5e8;width:170px;height:238px;margin:20px auto;display:flex;flex-direction:column;justify-content:space-between;padding:12px;box-shadow:0 12px 25px #0004}.card .corner{font-size:24px;font-weight:800}.card .center{font-size:64px;text-align:center}.red{color:#cb263a}.question{text-align:center;font-size:23px;font-weight:750;margin-top:22px}.number{font-size:88px;text-align:center;font-weight:800;margin:35px 0}.answer{width:100%;padding:15px;border-radius:12px;background:#101b28;color:white;border:1px solid #61738a;font-size:20px}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.grid button{padding:11px 2px}.small{font-size:13px}.hidden{display:none}.good{color:#86d7a6}.bad{color:#ff9a9a}.pill{display:inline-block;background:#30465a;padding:6px 10px;border-radius:30px;font-size:12px}.stack{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.stack>div{background:#26384b;padding:10px;border-radius:10px}textarea{width:100%;min-height:76px;background:#101b28;color:white;border:1px solid #53677c;border-radius:10px;padding:10px}nav{position:fixed;bottom:0;left:0;right:0;background:#152333;border-top:1px solid #344357;display:flex;justify-content:center;padding:10px 10px max(10px,env(safe-area-inset-bottom))}.memory-art{display:block;width:100%;max-width:440px;max-height:520px;object-fit:contain;margin:14px auto;border-radius:12px;background:#eee}.bookhint{padding:12px;border-radius:12px;background:#30465a;margin:12px 0}.bookhint img{width:100%;border-radius:8px}.import-status{min-height:24px}.book-step{background:#26384b;padding:12px;border-radius:12px;margin:10px 0}nav button{background:transparent;color:#c3cbd6;padding:10px 5px;font-size:11px}nav button.active{color:#e4c78b} .progress{height:8px;background:#33475a;border-radius:8px;overflow:hidden}.progress>div{height:100%;background:#d5b779} .feedback{margin-top:15px;padding:12px;border-radius:12px;background:#2b3c4c} .hintbox{background:#33475b;padding:14px;border-radius:12px;margin-top:12px}.subtle{background:transparent;color:#e4c78b;border:1px solid #61738a}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.choices button{background:#31465d;color:#fff}.tag{display:inline-block;border:1px solid #61738a;border-radius:20px;padding:5px 10px;font-size:12px;color:#cbd6e2}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.panel button{max-width:100%}select.answer{min-width:0}.card.mini{transform:scale(.8);margin:-4px auto}
 .coach-list{padding:14px}.coach-row{border-top:1px solid #344357}
 .coach-row summary{min-height:60px;padding:10px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 8px;cursor:pointer}
@@ -11,7 +11,100 @@
 .coach-rules{margin-bottom:12px}.coach-rules summary{cursor:pointer;padding:10px 0}
 #adaptiveStart,#coachStats,#coachBack,#adaptiveAgain{width:100%;min-height:44px}
 .place-quiz .choices button,#placeContinue,#placeExit{min-height:44px}
-</style><style id="mobile-quiz-fixes">input,select,textarea{font-size:16px!important}.place-quiz h1{font-size:22px;margin:6px 0}.place-quiz .panel{margin-top:10px;padding:12px}.place-quiz .panel h2{font-size:18px;margin:3px 0 12px}.place-quiz .memory-art{max-height:230px;margin:8px auto}.place-quiz .choices{gap:7px}.place-quiz .choices button{padding:11px 8px;min-height:45px}.place-quiz .feedback{margin-top:9px;padding:10px}.place-quiz .muted.small{margin:7px 0}.place-quiz:has(.place-next){padding-bottom:85px}.place-next{position:fixed;z-index:30;bottom:calc(58px + env(safe-area-inset-bottom));left:0;right:0;padding:9px 18px;background:linear-gradient(transparent,#101b28 20%);display:flex;justify-content:center}.place-next button{width:100%;max-width:484px;box-shadow:0 4px 16px #0008}nav{z-index:20}.place-quiz .sectionhead button{padding:9px;font-size:13px}.place-quiz .sectionhead{align-items:center}@media(max-height:720px){.place-quiz .memory-art{max-height:175px}.place-quiz .choices button{padding:9px 6px}}</style></head><body><main><header><span class="pill">♠ MNEMONICA COACH</span><span id="headProgress" class="muted small"></span></header><section id="screen"></section></main><nav><button data-nav="home" class="active">⌂ Start</button><button data-nav="course">◎ Lernkurs</button><button data-nav="stack">▦ Stapel</button><button data-nav="palace">▧ Bilder</button><button data-nav="stats">◉ Fortschritt</button></nav><script>
+</style><style id="mobile-quiz-fixes">input,select,textarea{font-size:16px!important}.place-quiz h1{font-size:22px;margin:6px 0}.place-quiz .panel{margin-top:10px;padding:12px}.place-quiz .panel h2{font-size:18px;margin:3px 0 12px}.place-quiz .memory-art{max-height:230px;margin:8px auto}.place-quiz .choices{gap:7px}.place-quiz .choices button{padding:11px 8px;min-height:45px}.place-quiz .feedback{margin-top:9px;padding:10px}.place-quiz .muted.small{margin:7px 0}.place-quiz:has(.place-next){padding-bottom:85px}.place-next{position:fixed;z-index:30;bottom:calc(58px + env(safe-area-inset-bottom));left:0;right:0;padding:9px 18px;background:linear-gradient(transparent,#101b28 20%);display:flex;justify-content:center}.place-next button{width:100%;max-width:484px;box-shadow:0 4px 16px #0008}nav{z-index:20}.place-quiz .sectionhead button{padding:9px;font-size:13px}.place-quiz .sectionhead{align-items:center}@media(max-height:720px){.place-quiz .memory-art{max-height:175px}.place-quiz .choices button{padding:9px 6px}}</style><style id="kreuz-vier-design">
+:root {
+  color-scheme: dark;
+  --night: #0b1520;
+  --ink: #f5ead5;
+  --muted: #bdc6ce;
+  --gold: #f1cc82;
+  --line: #665436;
+  --display: Georgia, 'Times New Roman', serif;
+  color: var(--ink);
+  background: var(--night);
+}
+body {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 48% 0%, #273748 0, transparent 34rem), var(--night);
+}
+main { max-width: 550px; padding: max(16px, env(safe-area-inset-top)) 18px 105px; }
+header {
+  gap: 10px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 9px; color: var(--gold); font: 700 18px var(--display); }
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+#headProgress { text-align: right; }
+h1, h2 { font-family: var(--display); color: var(--ink); }
+h1 { font-size: clamp(28px, 7vw, 37px); line-height: 1.08; margin: 20px 0 8px; }
+h2 { font-size: 22px; line-height: 1.2; }
+p { line-height: 1.45; }
+.muted { color: var(--muted); }
+.home-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(104px, 31vw, 160px);
+  gap: 8px;
+  align-items: center;
+  padding: 14px 10px 14px 16px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px 18px 30px 18px;
+  background: radial-gradient(ellipse at 93% 45%, #53422e 0, transparent 65%), #111e2b;
+}
+.home-intro h1 { margin: 0; font-size: clamp(23px, 6.5vw, 37px); }
+.home-intro p { margin: 8px 0 0; font-size: 14px; }
+.home-intro img { display: block; width: 100%; height: auto; border-radius: 20%; filter: drop-shadow(0 6px 12px #0008); }
+.panel {
+  background: linear-gradient(150deg, #223140, #142230 72%);
+  border-color: var(--line);
+  box-shadow: 0 8px 20px #03080d40;
+}
+.panel h2:first-child { margin-top: 2px; }
+.pill {
+  background: #322c25;
+  border: 1px solid var(--line);
+  color: var(--gold);
+}
+.stat > div, .stack > div, .book-step, .bookhint, .hintbox, .feedback {
+  background: #192735;
+  border: 1px solid #61543e;
+}
+.stat strong, .number { color: var(--gold); font-family: var(--display); }
+button {
+  min-height: 44px;
+  background: linear-gradient(165deg, #f8dc9f, #d4a455);
+  color: #201709;
+  box-shadow: inset 0 0 0 1px #ffdd9666;
+}
+button.secondary, .choices button { background: #293745; color: var(--ink); box-shadow: inset 0 0 0 1px #8a7550; }
+button.subtle { background: transparent; color: var(--gold); border-color: var(--line); box-shadow: none; }
+:focus-visible { outline: 2px solid #ffdc8c; outline-offset: 3px; }
+.answer, textarea { background: #0d1924; color: var(--ink); border-color: #8a7550; }
+.progress { background: #0b1520; }
+.progress > div { background: linear-gradient(90deg, #b77c36, #f8da99); }
+.card { background: #f7e8c6; border-color: #cc9d58; }
+.coach-row { border-color: var(--line); }
+.coach-status { background: #0d1924; }
+.coach-row .coach-status.red { background: #3b242d; }
+.coach-row .coach-status.green { background: #18352d; }
+.coach-row .coach-status.yellow { background: #392e1c; }
+nav {
+  border-top-color: var(--line);
+  background: #101c28;
+  padding: 5px 6px max(5px, env(safe-area-inset-bottom));
+}
+nav button { flex: 1; max-width: 105px; background: transparent; box-shadow: none; color: var(--muted); font-size: 11px; }
+nav button.active { background: #362d22; color: var(--gold); box-shadow: inset 0 2px var(--gold); }
+.place-quiz h1 { line-height: 1.15; }
+.place-next { background: linear-gradient(transparent, var(--night) 28%); }
+@media (max-width: 360px) {
+  main { padding-inline: 12px; }
+  .home-intro { padding-left: 10px; }
+  nav button { padding-inline: 1px; }
+}
+</style>
+</head><body><main><header><span class="brand"><img src="icon-192.png" alt="" width="34" height="34">Mnemonica Coach</span><span id="headProgress" class="muted small"></span></header><section id="screen"></section></main><nav><button data-nav="home" class="active">⌂ Start</button><button data-nav="course">◎ Lernkurs</button><button data-nav="stack">▦ Stapel</button><button data-nav="palace">▧ Bilder</button><button data-nav="stats">◉ Fortschritt</button></nav><script>
 const raw='4C 2H 7D 3C 4H 6D AS 5H 9S 2S QH 3D QC 8H 6S 5S 9H KC 2D JH 3S 8S 6H TC 5D KD 2C 3H 8D 5C KS JD 8C TS KH JC 7S TH AD 4S 7H 4D AC 9C JS QD 7C QS TD 6C AH 9D'.split(' ');
 const suit={C:'♣',D:'♦',H:'♥',S:'♠'},names={C:'Kreuz',D:'Karo',H:'Herz',S:'Pik'},ranks={A:'Ass',K:'König',Q:'Dame',J:'Bube',T:'10'};
 const cards=raw.map((id,i)=>({id,pos:i+1,s:id.slice(-1),r:id.slice(0,-1),name:names[id.slice(-1)]+' '+(ranks[id.slice(0,-1)]||id.slice(0,-1))}));
@@ -23,7 +116,7 @@ const escapeHtml=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>'
 function cardHtml(c){return `<div class="card ${'DH'.includes(c.s)?'red':''}"><div class="corner">${c.r==='T'?'10':c.r} ${suit[c.s]}</div><div class="center">${suit[c.s]}</div><div class="corner" style="text-align:right">${c.r==='T'?'10':c.r} ${suit[c.s]}</div></div>`}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function hint(c){let n=state.notes[c.id];return n?`💡 Deine Merkhilfe: ${escapeHtml(n)}`:'💡 Erfinde ein auffälliges Bild, das die Zahl '+c.pos+' mit '+escapeHtml(c.name)+' verbindet. Du kannst deine Merkhilfe unter „Stapel“ speichern.'}
-function home(){let k=known(),due=cards.slice(0,state.unlocked).filter(c=>rec(c).due<=Date.now()).length;return `<h1>Dein Kartengedächtnis 🃏</h1><p class="muted">In kleinen Gruppen lernen. Durcheinander abfragen. Sicher erinnern.</p><div class="panel"><div class="stat"><div><strong>${state.unlocked}/52</strong><span class="small">Freigeschaltet</span></div><div><strong>${k}</strong><span class="small">Gefestigt</span></div><div><strong>${due}</strong><span class="small">Zum Üben</span></div></div><h2>Dein Lernplan</h2><p class="muted">Erst fünf Karten ansehen, dann gemischt in beide Richtungen üben – mit optionalen Hinweisen.</p><div class="actions"><button id="start">5 Karten lernen</button><button id="practice" class="secondary">Alle üben</button></div><p class="small muted">Fortschritt bleibt in diesem Browser gespeichert.</p></div><div class="panel"><h2>Training</h2><div class="actions"><button id="guided" class="secondary">Mit Hilfen</button><button id="fast" class="secondary">Ohne Hilfen</button></div><p class="small muted">In jeder Runde werden die Karten gemischt. Beide Abfragerichtungen kommen vor.</p></div><div class="panel"><h2>Nächste Lernportion</h2><p>Karten 1–${state.unlocked} freigeschaltet.</p><div class="progress"><div style="width:${k/state.unlocked*100}%"></div></div><p class="small muted">${k} von ${state.unlocked} gefestigt.</p><button id="expand" class="secondary" ${state.unlocked>=52?'disabled':''}>Nächste 5 Karten hinzufügen</button></div>`}
+function home(){let k=known(),due=cards.slice(0,state.unlocked).filter(c=>rec(c).due<=Date.now()).length;return `<div class="home-intro"><div><h1>Dein Kartengedächtnis</h1><p class="muted">Lerne den Mnemonica-Stack Schritt für Schritt.</p></div><img src="icon-512.png" alt="" width="512" height="512"></div><div class="panel"><div class="stat"><div><strong>${state.unlocked}/52</strong><span class="small">Freigeschaltet</span></div><div><strong>${k}</strong><span class="small">Gefestigt</span></div><div><strong>${due}</strong><span class="small">Zum Üben</span></div></div><h2>Dein Lernplan</h2><p class="muted">Erst fünf Karten ansehen, dann gemischt in beide Richtungen üben – mit optionalen Hinweisen.</p><div class="actions"><button id="start">5 Karten lernen</button><button id="practice" class="secondary">Alle üben</button></div><p class="small muted">Fortschritt bleibt in diesem Browser gespeichert.</p></div><div class="panel"><h2>Training</h2><div class="actions"><button id="guided" class="secondary">Mit Hilfen</button><button id="fast" class="secondary">Ohne Hilfen</button></div><p class="small muted">In jeder Runde werden die Karten gemischt. Beide Abfragerichtungen kommen vor.</p></div><div class="panel"><h2>Nächste Lernportion</h2><p>Karten 1–${state.unlocked} freigeschaltet.</p><div class="progress"><div style="width:${k/state.unlocked*100}%"></div></div><p class="small muted">${k} von ${state.unlocked} gefestigt.</p><button id="expand" class="secondary" ${state.unlocked>=52?'disabled':''}>Nächste 5 Karten hinzufügen</button></div>`}
 function start(){page='learn';phase='intro';mode='guided';idx=0;queue=cards.slice(Math.max(0,state.unlocked-5),state.unlocked);sessionAnswers=0;sessionCorrect=0;render()}
 function training(chosen='guided',pool){page='learn';mode=chosen;phase='quiz';sessionAnswers=0;sessionCorrect=0;sessionErrors=[];startedAt=Date.now();let eligible=pool||cards.slice(0,state.unlocked);let due=eligible.filter(c=>rec(c).due<=Date.now());let selected=shuffle(due.length?due:eligible).slice(0,Math.min(12,eligible.length));queue=shuffle(selected.flatMap(c=>[{card:c,dir:'position'},{card:c,dir:'card'}]));idx=0;next()}
 function next(){result=null;hintVisible=false;answerVisible=false;if(idx>=queue.length){phase='done';state.sessions++;save();render();return}current=queue[idx].card;dir=queue[idx].dir;phase='quiz';render()}
